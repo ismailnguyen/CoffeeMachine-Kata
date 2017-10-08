@@ -27,5 +27,10 @@ namespace CoffeeMachine
         {
             return "T::";
         }
+
+        public object TeaWithSugar()
+        {
+            return "T:1:1";
+        }
     }
 }
