@@ -1,4 +1,6 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class DrinkMaker
     {
@@ -6,19 +8,29 @@
         private const string TEA = "T";
         private const string CHOCOLATE = "H";
 
+        private string makeCoffee()
+        {
+            return string.Format("{0}::", COFFEE);
+        }
+
+        private string makeCoffee(int sugar)
+        {
+            return string.Format("{0}:{1}:1", COFFEE, sugar);
+        }
+
         public string Coffee()
         {
-            return COFFEE + "::";
+            return makeCoffee();
         }
 
         public string CoffeeWithSugar()
         {
-            return COFFEE + ":1:1";
+            return makeCoffee(1);
         }
 
         public string CoffeeWithTwoSugar()
         {
-            return COFFEE + ":2:1";
+            return makeCoffee(2);
         }
 
         public object Tea()
