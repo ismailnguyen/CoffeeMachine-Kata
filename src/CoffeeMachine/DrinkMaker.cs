@@ -1,56 +1,54 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class DrinkMaker
     {
-        public DrinkMaker()
-        {
-        }
+        private const string COFFEE = "C";
+        private const string TEA = "T";
+        private const string CHOCOLATE = "H";
 
         public string Coffee()
         {
-            return "C::";
+            return COFFEE + "::";
         }
 
         public string CoffeeWithSugar()
         {
-            return "C:1:1";
+            return COFFEE + ":1:1";
         }
 
         public string CoffeeWithTwoSugar()
         {
-            return "C:2:1";
+            return COFFEE + ":2:1";
         }
 
         public object Tea()
         {
-            return "T::";
+            return TEA + "::";
         }
 
         public object TeaWithSugar()
         {
-            return "T:1:1";
+            return TEA + ":1:1";
         }
 
         public object TeaWithTwoSugar()
         {
-            return "T:2:1";
+            return TEA + ":2:1";
         }
 
         public object Chocolate()
         {
-            return "H::";
+            return CHOCOLATE + "::";
         }
 
         public object ChocolateWithSugar()
         {
-            return "H:1:1";
+            return CHOCOLATE + ":1:1";
         }
 
         public object ChocolateWithTwoSugar()
         {
-            return "H:2:1";
+            return CHOCOLATE + ":2:1";
         }
     }
 }
