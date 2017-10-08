@@ -47,5 +47,10 @@ namespace CoffeeMachine
         {
             return "H:1:1";
         }
+
+        public object ChocolateWithTwoSugar()
+        {
+            return "H:2:1";
+        }
     }
 }

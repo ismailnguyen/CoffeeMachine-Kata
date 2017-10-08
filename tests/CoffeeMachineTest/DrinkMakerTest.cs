@@ -69,5 +69,13 @@ namespace CoffeeMachineTest
 
             Check.That(drinkMaker.ChocolateWithSugar()).IsEqualTo("H:1:1");
         }
+
+        [Test]
+        public void Should_Make_Chocolate_With_Two_Sugar_With_Stick()
+        {
+            var drinkMaker = new DrinkMaker();
+
+            Check.That(drinkMaker.ChocolateWithTwoSugar()).IsEqualTo("H:2:1");
+        }
     }
 }
