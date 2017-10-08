@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NFluent;
+using NUnit.Framework;
 
 namespace CoffeeMachineTest
 {
     public class Class1
     {
+        
     }
 }
