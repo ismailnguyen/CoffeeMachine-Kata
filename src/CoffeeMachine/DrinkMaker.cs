@@ -17,5 +17,10 @@ namespace CoffeeMachine
         {
             return "C:1:1";
         }
+
+        public string CoffeeWithTwoSugar()
+        {
+            return "C:2:1";
+        }
     }
 }
