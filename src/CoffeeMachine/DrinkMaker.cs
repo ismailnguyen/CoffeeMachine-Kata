@@ -22,5 +22,10 @@ namespace CoffeeMachine
         {
             return "C:2:1";
         }
+
+        public object Tea()
+        {
+            return "T::";
+        }
     }
 }
