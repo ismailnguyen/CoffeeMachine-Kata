@@ -11,15 +11,18 @@ namespace CoffeeMachine
             InsertedMoneyAmount += moneyAmount;
         }
 
+        public double GetMissingMoneyAmount(double drinkPrice)
+        {
+            return drinkPrice - InsertedMoneyAmount;
+        }
+
         public string Coffee()
         {
             var coffee = Drink.Coffee;
 
             if (InsertedMoneyAmount < coffee.Price)
             {
-                var missingMoneyAmount = coffee.Price - InsertedMoneyAmount;
-
-                return string.Format("M:{0:0.00}", missingMoneyAmount);
+                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(coffee.Price));
             }
 
             return coffee.Make();
