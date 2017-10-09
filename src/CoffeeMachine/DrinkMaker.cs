@@ -37,6 +37,11 @@
         {
             var tea = Drink.Tea;
 
+            if (InsertedMoneyAmount < tea.Price)
+            {
+                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(tea.Price));
+            }
+
             return tea.Make();
         }
 

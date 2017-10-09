@@ -46,12 +46,16 @@ namespace CoffeeMachineTest
             Check.That(drinkMaker.CoffeeWithSugar(2)).IsEqualTo("C:2:1");
         }
 
-        [Test]
-        public void Should_Make_Tea_Without_Sugar_Without_Stick()
+        [TestCase(0, "M:0,40")]
+        [TestCase(0.1, "M:0,30")]
+        [TestCase(0.3, "M:0,10")]
+        public void Should_Make_Tea_Without_Sugar_Without_Stick_With_Insufficient_Money(double insertedMoneyAmount, string missingMoneyAmount)
         {
             var drinkMaker = new DrinkMaker();
 
-            Check.That(drinkMaker.Tea()).IsEqualTo("T::");
+            drinkMaker.InsertMoney(insertedMoneyAmount);
+
+            Check.That(drinkMaker.Tea()).IsEqualTo(missingMoneyAmount);
         }
 
         [Test]
@@ -67,7 +71,7 @@ namespace CoffeeMachineTest
         {
             var drinkMaker = new DrinkMaker();
 
-            Check.That(drinkMaker.TeaWithTwoSugar()).IsEqualTo("T:2:1");
+            Check.That(drinkMaker.TeaWithSugar(2)).IsEqualTo("T:2:1");
         }
 
         [Test]
@@ -91,7 +95,7 @@ namespace CoffeeMachineTest
         {
             var drinkMaker = new DrinkMaker();
 
-            Check.That(drinkMaker.ChocolateWithTwoSugar()).IsEqualTo("H:2:1");
+            Check.That(drinkMaker.ChocolateWithSugar(2)).IsEqualTo("H:2:1");
         }
 
         [Test]
