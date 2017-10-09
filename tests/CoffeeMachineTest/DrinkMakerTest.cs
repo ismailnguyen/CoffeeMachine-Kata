@@ -6,12 +6,14 @@ namespace CoffeeMachineTest
 {
     public class DrinkMakerTest
     {
-        [Test]
-        public void Should_Make_Coffee_Without_Sugar_Without_Stick_With_Enough_Money()
+        [TestCase(0.6)]
+        [TestCase(0.7)]
+        [TestCase(2)]
+        public void Should_Make_Coffee_Without_Sugar_Without_Stick_With_Enough_Money(double insertedMoneyAmount)
         {
             var drinkMaker = new DrinkMaker();
 
-            drinkMaker.InsertMoney(0.6);
+            drinkMaker.InsertMoney(insertedMoneyAmount);
 
             Check.That(drinkMaker.Coffee()).IsEqualTo("C::");
         }
