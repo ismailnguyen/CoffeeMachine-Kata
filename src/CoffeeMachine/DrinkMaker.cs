@@ -13,12 +13,14 @@ namespace CoffeeMachine
 
         public string Coffee()
         {
-            if (InsertedMoneyAmount < 0.6)
-            {
-                return "M:0,50";
-            }
-
             var coffee = Drink.Coffee;
+
+            if (InsertedMoneyAmount < coffee.Price)
+            {
+                var missingMoneyAmount = coffee.Price - InsertedMoneyAmount;
+
+                return string.Format("M:{0:0.00}", missingMoneyAmount);
+            }
 
             return coffee.Make();
         }

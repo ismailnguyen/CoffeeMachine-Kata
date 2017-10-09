@@ -16,14 +16,16 @@ namespace CoffeeMachineTest
             Check.That(drinkMaker.Coffee()).IsEqualTo("C::");
         }
 
-        [Test]
-        public void Should_Not_Make_Coffee_Without_Sugar_Without_Stick_With_Insufficient_Money()
+        [TestCase(0, "M:0,60")]
+        [TestCase(0.1, "M:0,50")]
+        [TestCase(0.5, "M:0,10")]
+        public void Should_Not_Make_Coffee_Without_Sugar_Without_Stick_With_Insufficient_Money(double insertedMoneyAmount, string missingMoneyAmount)
         {
             var drinkMaker = new DrinkMaker();
 
-            drinkMaker.InsertMoney(0.1);
+            drinkMaker.InsertMoney(insertedMoneyAmount);
 
-            Check.That(drinkMaker.Coffee()).IsEqualTo("M:0,50");
+            Check.That(drinkMaker.Coffee()).IsEqualTo(missingMoneyAmount);
         }
 
         [Test]
