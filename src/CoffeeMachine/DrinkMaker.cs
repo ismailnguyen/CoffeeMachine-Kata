@@ -2,37 +2,30 @@
 {
     public class DrinkMaker
     {
-        private const string COFFEE = "C";
         private const string TEA = "T";
         private const string CHOCOLATE = "H";
         private const string DRINK_WITH_SUGAR_CODE = "{0}:{1}:1";
         private const string DRINK_WITHOUT_SUGAR_CODE = "{0}::";
 
-        private string makeCoffee()
-        {
-            return string.Format(DRINK_WITHOUT_SUGAR_CODE, COFFEE);
-        }
-
-        private string makeCofeeWithSugar(int sugarQuantity)
-        {
-            return string.Format(DRINK_WITH_SUGAR_CODE, COFFEE, sugarQuantity);
-        }
-
         public string Coffee()
         {
-            var drink = new Drink();
+            var coffee = Drink.Coffee;
 
-            return drink.Make();
+            return coffee.Make();
         }
 
         public string CoffeeWithSugar()
         {
-            return makeCofeeWithSugar(1);
+            var coffee = Drink.Coffee;
+
+            return coffee.MakeWithSugar(1);
         }
 
         public string CoffeeWithTwoSugar()
         {
-            return makeCofeeWithSugar(2);
+            var coffee = Drink.Coffee;
+
+            return coffee.MakeWithSugar(2);
         }
 
         private string makeTea()
