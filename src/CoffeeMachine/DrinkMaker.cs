@@ -5,15 +5,17 @@
         private const string COFFEE = "C";
         private const string TEA = "T";
         private const string CHOCOLATE = "H";
+        private const string DRINK_WITH_SUGAR_CODE = "{0}:{1}:1";
+        private const string DRINK_WITHOUT_SUGAR_CODE = "{0}::";
 
         private string makeCoffee()
         {
-            return string.Format("{0}::", COFFEE);
+            return string.Format(DRINK_WITHOUT_SUGAR_CODE, COFFEE);
         }
 
         private string makeCofeeWithSugar(int sugarQuantity)
         {
-            return string.Format("{0}:{1}:1", COFFEE, sugarQuantity);
+            return string.Format(DRINK_WITH_SUGAR_CODE, COFFEE, sugarQuantity);
         }
 
         public string Coffee()
@@ -33,12 +35,12 @@
 
         private string makeTea()
         {
-            return string.Format("{0}::", TEA);
+            return string.Format(DRINK_WITHOUT_SUGAR_CODE, TEA);
         }
 
         private string makeTeaWithSugar(int sugarQuantity)
         {
-            return string.Format("{0}:{1}:1", TEA, sugarQuantity);
+            return string.Format(DRINK_WITH_SUGAR_CODE, TEA, sugarQuantity);
         }
 
         public object Tea()
@@ -58,12 +60,12 @@
 
         private string makeChocolate()
         {
-            return string.Format("{0}::", CHOCOLATE);
+            return string.Format(DRINK_WITHOUT_SUGAR_CODE, CHOCOLATE);
         }
 
         private string makeChocolateWithSugar(int sugarQuantity)
         {
-            return string.Format("{0}:{1}:1", CHOCOLATE, sugarQuantity);
+            return string.Format(DRINK_WITH_SUGAR_CODE, CHOCOLATE, sugarQuantity);
         }
 
         public object Chocolate()
