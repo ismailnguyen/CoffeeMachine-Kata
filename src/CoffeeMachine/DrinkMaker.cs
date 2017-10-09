@@ -20,7 +20,9 @@
 
         public string Coffee()
         {
-            return makeCoffee();
+            var drink = new Drink();
+
+            return drink.Make();
         }
 
         public string CoffeeWithSugar()
