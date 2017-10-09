@@ -2,11 +2,6 @@
 {
     public class DrinkMaker
     {
-        private const string TEA = "T";
-        private const string CHOCOLATE = "H";
-        private const string DRINK_WITH_SUGAR_CODE = "{0}:{1}:1";
-        private const string DRINK_WITHOUT_SUGAR_CODE = "{0}::";
-
         public string Coffee()
         {
             var coffee = Drink.Coffee;
@@ -28,54 +23,46 @@
             return coffee.MakeWithSugar(2);
         }
 
-        private string makeTea()
-        {
-            return string.Format(DRINK_WITHOUT_SUGAR_CODE, TEA);
-        }
-
-        private string makeTeaWithSugar(int sugarQuantity)
-        {
-            return string.Format(DRINK_WITH_SUGAR_CODE, TEA, sugarQuantity);
-        }
-
         public object Tea()
         {
-            return makeTea();
+            var tea = Drink.Tea;
+
+            return tea.Make();
         }
 
         public object TeaWithSugar()
         {
-            return makeTeaWithSugar(1);
+            var tea = Drink.Tea;
+
+            return tea.MakeWithSugar(1);
         }
 
         public object TeaWithTwoSugar()
         {
-            return makeTeaWithSugar(2);
-        }
+            var tea = Drink.Tea;
 
-        private string makeChocolate()
-        {
-            return string.Format(DRINK_WITHOUT_SUGAR_CODE, CHOCOLATE);
-        }
-
-        private string makeChocolateWithSugar(int sugarQuantity)
-        {
-            return string.Format(DRINK_WITH_SUGAR_CODE, CHOCOLATE, sugarQuantity);
+            return tea.MakeWithSugar(2);
         }
 
         public object Chocolate()
         {
-            return makeChocolate();
+            var chocolate = Drink.Chocolate;
+
+            return chocolate.Make();
         }
 
         public object ChocolateWithSugar()
         {
-            return makeChocolateWithSugar(1);
+            var chocolate = Drink.Chocolate;
+
+            return chocolate.MakeWithSugar(1);
         }
 
         public object ChocolateWithTwoSugar()
         {
-            return makeChocolateWithSugar(2);
+            var chocolate = Drink.Chocolate;
+
+            return chocolate.MakeWithSugar(2);
         }
     }
 }
