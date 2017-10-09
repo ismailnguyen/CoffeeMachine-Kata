@@ -1,4 +1,6 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class DrinkMaker
     {
@@ -63,6 +65,11 @@
             var chocolate = Drink.Chocolate;
 
             return chocolate.MakeWithSugar(2);
+        }
+
+        public object ForwardMessage()
+        {
+            return "M:message-content";
         }
     }
 }

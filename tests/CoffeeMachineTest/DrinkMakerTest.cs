@@ -77,5 +77,13 @@ namespace CoffeeMachineTest
 
             Check.That(drinkMaker.ChocolateWithTwoSugar()).IsEqualTo("H:2:1");
         }
+
+        [Test]
+        public void Should_Forward_Message_To_Interface()
+        {
+            var drinkMaker = new DrinkMaker();
+
+            Check.That(drinkMaker.ForwardMessage()).IsEqualTo("M:message-content");
+        }
     }
 }
