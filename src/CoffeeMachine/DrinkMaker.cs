@@ -4,8 +4,20 @@ namespace CoffeeMachine
 {
     public class DrinkMaker
     {
+        public double InsertedMoneyAmount { get; private set; }
+
+        public void InsertMoney(double moneyAmount)
+        {
+            InsertedMoneyAmount += moneyAmount;
+        }
+
         public string Coffee()
         {
+            if (InsertedMoneyAmount < 0.6)
+            {
+                return "M:0,50";
+            }
+
             var coffee = Drink.Coffee;
 
             return coffee.Make();
