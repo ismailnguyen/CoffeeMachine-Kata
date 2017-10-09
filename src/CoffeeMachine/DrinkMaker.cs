@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class DrinkMaker
     {
@@ -13,9 +11,9 @@ namespace CoffeeMachine
             return string.Format("{0}::", COFFEE);
         }
 
-        private string makeCoffee(int sugar)
+        private string makeCofeeWithSugar(int sugarQuantity)
         {
-            return string.Format("{0}:{1}:1", COFFEE, sugar);
+            return string.Format("{0}:{1}:1", COFFEE, sugarQuantity);
         }
 
         public string Coffee()
@@ -25,42 +23,62 @@ namespace CoffeeMachine
 
         public string CoffeeWithSugar()
         {
-            return makeCoffee(1);
+            return makeCofeeWithSugar(1);
         }
 
         public string CoffeeWithTwoSugar()
         {
-            return makeCoffee(2);
+            return makeCofeeWithSugar(2);
+        }
+
+        private string makeTea()
+        {
+            return string.Format("{0}::", TEA);
+        }
+
+        private string makeTeaWithSugar(int sugarQuantity)
+        {
+            return string.Format("{0}:{1}:1", TEA, sugarQuantity);
         }
 
         public object Tea()
         {
-            return TEA + "::";
+            return makeTea();
         }
 
         public object TeaWithSugar()
         {
-            return TEA + ":1:1";
+            return makeTeaWithSugar(1);
         }
 
         public object TeaWithTwoSugar()
         {
-            return TEA + ":2:1";
+            return makeTeaWithSugar(2);
+        }
+
+        private string makeChocolate()
+        {
+            return string.Format("{0}::", CHOCOLATE);
+        }
+
+        private string makeChocolateWithSugar(int sugarQuantity)
+        {
+            return string.Format("{0}:{1}:1", CHOCOLATE, sugarQuantity);
         }
 
         public object Chocolate()
         {
-            return CHOCOLATE + "::";
+            return makeChocolate();
         }
 
         public object ChocolateWithSugar()
         {
-            return CHOCOLATE + ":1:1";
+            return makeChocolateWithSugar(1);
         }
 
         public object ChocolateWithTwoSugar()
         {
-            return CHOCOLATE + ":2:1";
+            return makeChocolateWithSugar(2);
         }
     }
 }
