@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class DrinkMaker
     {
@@ -28,18 +26,11 @@ namespace CoffeeMachine
             return coffee.Make();
         }
 
-        public string CoffeeWithSugar()
+        public string CoffeeWithSugar(int sugarQuantity = 1)
         {
             var coffee = Drink.Coffee;
 
-            return coffee.MakeWithSugar(1);
-        }
-
-        public string CoffeeWithTwoSugar()
-        {
-            var coffee = Drink.Coffee;
-
-            return coffee.MakeWithSugar(2);
+            return coffee.MakeWithSugar(sugarQuantity);
         }
 
         public object Tea()
@@ -49,18 +40,11 @@ namespace CoffeeMachine
             return tea.Make();
         }
 
-        public object TeaWithSugar()
+        public object TeaWithSugar(int sugarQuantity = 1)
         {
             var tea = Drink.Tea;
 
-            return tea.MakeWithSugar(1);
-        }
-
-        public object TeaWithTwoSugar()
-        {
-            var tea = Drink.Tea;
-
-            return tea.MakeWithSugar(2);
+            return tea.MakeWithSugar(sugarQuantity);
         }
 
         public object Chocolate()
@@ -70,18 +54,11 @@ namespace CoffeeMachine
             return chocolate.Make();
         }
 
-        public object ChocolateWithSugar()
+        public object ChocolateWithSugar(int sugarQuantity = 1)
         {
             var chocolate = Drink.Chocolate;
 
-            return chocolate.MakeWithSugar(1);
-        }
-
-        public object ChocolateWithTwoSugar()
-        {
-            var chocolate = Drink.Chocolate;
-
-            return chocolate.MakeWithSugar(2);
+            return chocolate.MakeWithSugar(sugarQuantity);
         }
 
         public object ForwardMessage()

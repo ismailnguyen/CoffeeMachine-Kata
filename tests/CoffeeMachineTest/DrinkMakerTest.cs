@@ -43,7 +43,7 @@ namespace CoffeeMachineTest
         {
             var drinkMaker = new DrinkMaker();
 
-            Check.That(drinkMaker.CoffeeWithTwoSugar()).IsEqualTo("C:2:1");
+            Check.That(drinkMaker.CoffeeWithSugar(2)).IsEqualTo("C:2:1");
         }
 
         [Test]
