@@ -1,5 +1,5 @@
-# CoffeeMachine
+# Coffee Machine Kata
 Kata, TDD, C#
 
-Implementation of CoffeeMachine kata
+Implementation of Coffee Machine kata
 ``http://simcap.github.io/coffeemachine/``
