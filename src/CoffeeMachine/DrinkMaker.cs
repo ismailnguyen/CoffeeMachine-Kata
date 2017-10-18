@@ -5,6 +5,16 @@
         protected Drink Drink { get; set; }
         private CashRegister cashRegister = new CashRegister();
 
+        public void AddSugar()
+        {
+            Drink.AddSugar();
+        }
+
+        public void SetExtraHot()
+        {
+            Drink.SetExtraHot();
+        }
+
         public void InsertMoney(double moneyAmount)
         {
             cashRegister.InsertMoney(moneyAmount);
@@ -28,16 +38,6 @@
             }
 
             return Drink.BuildCommand();
-        }
-
-        public string MakeWithSugar(int sugarQuantity = 1)
-        {
-            if (cashRegister.IsInsertedMoneyLessThan(Drink.Price))
-            {
-                return showInsufficientMoneyMessage();
-            }
-
-            return Drink.BuildCommandWithSugar(sugarQuantity);
         }
 
         public object ForwardMessage()

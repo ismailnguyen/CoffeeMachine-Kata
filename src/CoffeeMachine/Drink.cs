@@ -1,11 +1,13 @@
-﻿namespace CoffeeMachine
+﻿using System.Text;
+
+namespace CoffeeMachine
 {
     public class Drink
     {
-        private const string FORMAT_DRINK_WITH_SUGAR = "{0}:{1}:1";
-        private const string FORMAT_DRINK_WITHOUT_SUGAR = "{0}::";
-
         private string drinkCode;
+        private bool isExtraHot;
+
+        private int sugars;
         public double Price { get; private set; }
 
         public Drink(string drinkCode, double price)
@@ -14,14 +16,40 @@
             Price = price;
         }
 
-        public string BuildCommand()
+        public void AddSugar()
         {
-            return string.Format(FORMAT_DRINK_WITHOUT_SUGAR, drinkCode);
+            if (sugars == 2)
+            {
+                return;
+            }
+
+            sugars++;
         }
 
-        public string BuildCommandWithSugar(int sugarQuantity)
+        public void SetExtraHot()
         {
-            return string.Format(FORMAT_DRINK_WITH_SUGAR, drinkCode, sugarQuantity);
+            isExtraHot = true;
+        }
+
+        public string BuildCommand()
+        {
+            var command = new StringBuilder(drinkCode);
+
+            if (isExtraHot)
+            {
+                command.Append("h");
+            }
+
+            if (sugars > 0)
+            {
+                command.AppendFormat(":{0}:1", sugars);
+            }
+            else
+            {
+                command.Append("::");
+            }
+
+            return command.ToString();
         }
     }
 }
