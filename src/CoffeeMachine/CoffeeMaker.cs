@@ -2,28 +2,12 @@
 {
     public class CoffeeMaker : DrinkMaker
     {
-        public override string Make()
+        private const string COFFEE_CODE = "C";
+        private const double COFFEE_PRICE = 0.60;
+
+        public CoffeeMaker()
         {
-            var coffee = Drink.Coffee;
-
-            if (InsertedMoneyAmount < coffee.Price)
-            {
-                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(coffee.Price));
-            }
-
-            return coffee.Make();
-        }
-
-        public override string MakeWithSugar(int sugarQuantity = 1)
-        {
-            var coffee = Drink.Coffee;
-
-            if (InsertedMoneyAmount < coffee.Price)
-            {
-                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(coffee.Price));
-            }
-
-            return coffee.MakeWithSugar(sugarQuantity);
+            Drink = new Drink(COFFEE_CODE, COFFEE_PRICE);
         }
     }
 }

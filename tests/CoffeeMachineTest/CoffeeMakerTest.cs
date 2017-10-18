@@ -9,11 +9,11 @@ namespace CoffeeMachineTest
         [TestCase(0.6)]
         [TestCase(0.7)]
         [TestCase(2)]
-        public void Should_Make_Coffee_Without_Sugar_Without_Stick_With_Enough_Money(double insertedMoneyAmount)
+        public void Should_Make_Coffee_Without_Sugar_Without_Stick_With_Enough_Money(double moneyAmountToInsert)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
             Check.That(drinkMaker.Make()).IsEqualTo("C::");
         }
@@ -21,23 +21,23 @@ namespace CoffeeMachineTest
         [TestCase(0, "M:0,60")]
         [TestCase(0.1, "M:0,50")]
         [TestCase(0.5, "M:0,10")]
-        public void Should_Not_Make_Coffee_Without_Sugar_Without_Stick_With_Insufficient_Money(double insertedMoneyAmount, string missingMoneyAmount)
+        public void Should_Not_Make_Coffee_Without_Sugar_Without_Stick_With_Insufficient_Money(double moneyAmountToInsert, string expectedMissingMoneyAmount)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
-            Check.That(drinkMaker.Make()).IsEqualTo(missingMoneyAmount);
+            Check.That(drinkMaker.Make()).IsEqualTo(expectedMissingMoneyAmount);
         }
 
         [TestCase(0.6)]
         [TestCase(0.7)]
         [TestCase(2)]
-        public void Should_Make_Coffee_With_Sugar_With_Stick_With_Enough_Money(double insertedMoneyAmount)
+        public void Should_Make_Coffee_With_Sugar_With_Stick_With_Enough_Money(double moneyAmountToInsert)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
             Check.That(drinkMaker.MakeWithSugar()).IsEqualTo("C:1:1");
         }
@@ -45,23 +45,23 @@ namespace CoffeeMachineTest
         [TestCase(0, "M:0,60")]
         [TestCase(0.1, "M:0,50")]
         [TestCase(0.5, "M:0,10")]
-        public void Should_Make_Coffee_With_Sugar_With_Stick_With_Insufficient_Money(double insertedMoneyAmount, string missingMoneyAmount)
+        public void Should_Make_Coffee_With_Sugar_With_Stick_With_Insufficient_Money(double moneyAmountToInsert, string expectedMissingMoneyAmount)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
-            Check.That(drinkMaker.Make()).IsEqualTo(missingMoneyAmount);
+            Check.That(drinkMaker.Make()).IsEqualTo(expectedMissingMoneyAmount);
         }
 
         [TestCase(0.6)]
         [TestCase(0.7)]
         [TestCase(2)]
-        public void Should_Make_Coffee_With_Two_Sugar_With_Stick_With_Enough_Money(double insertedMoneyAmount)
+        public void Should_Make_Coffee_With_Two_Sugar_With_Stick_With_Enough_Money(double moneyAmountToInsert)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
             Check.That(drinkMaker.MakeWithSugar()).IsEqualTo("C:1:1");
         }
@@ -69,13 +69,13 @@ namespace CoffeeMachineTest
         [TestCase(0, "M:0,60")]
         [TestCase(0.1, "M:0,50")]
         [TestCase(0.5, "M:0,10")]
-        public void Should_Make_Coffee_With_Two_Sugar_With_Stick_With_Insufficient_Money(double insertedMoneyAmount, string missingMoneyAmount)
+        public void Should_Make_Coffee_With_Two_Sugar_With_Stick_With_Insufficient_Money(double moneyAmountToInsert, string expectedMissingMoneyAmount)
         {
             var drinkMaker = new CoffeeMaker();
 
-            drinkMaker.InsertMoney(insertedMoneyAmount);
+            drinkMaker.InsertMoney(moneyAmountToInsert);
 
-            Check.That(drinkMaker.Make()).IsEqualTo(missingMoneyAmount);
+            Check.That(drinkMaker.Make()).IsEqualTo(expectedMissingMoneyAmount);
         }
     }
 }

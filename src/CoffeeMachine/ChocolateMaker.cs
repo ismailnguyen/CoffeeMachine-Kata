@@ -2,28 +2,12 @@
 {
     public class ChocolateMaker : DrinkMaker
     {
-        public override string Make()
+        private const string CHOCOLATE_CODE = "H";
+        private const double CHOCOLATE_PRICE = 0.50;
+
+        public ChocolateMaker()
         {
-            var chocolate = Drink.Chocolate;
-
-            if (InsertedMoneyAmount < chocolate.Price)
-            {
-                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(chocolate.Price));
-            }
-
-            return chocolate.Make();
-        }
-
-        public override string MakeWithSugar(int sugarQuantity = 1)
-        {
-            var chocolate = Drink.Chocolate;
-
-            if (InsertedMoneyAmount < chocolate.Price)
-            {
-                return string.Format("M:{0:0.00}", GetMissingMoneyAmount(chocolate.Price));
-            }
-
-            return chocolate.MakeWithSugar(sugarQuantity);
+            Drink = new Drink(CHOCOLATE_CODE, CHOCOLATE_PRICE);
         }
     }
 }
