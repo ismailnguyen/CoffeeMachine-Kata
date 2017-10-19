@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChocolateMakerTest.cs" />
+    <Compile Include="CoffeeMakerTest.cs" />
     <Compile Include="DrinkMakerTest.cs" />
+    <Compile Include="OrangeJuiceMakerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeaMakerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

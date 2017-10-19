@@ -1,70 +1,43 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
-    public class DrinkMaker
+    public abstract class DrinkMaker
     {
-        public string Coffee()
-        {
-            var coffee = Drink.Coffee;
+        protected Drink Drink { get; set; }
+        private CashRegister cashRegister = new CashRegister();
 
-            return coffee.Make();
+        public void AddSugar()
+        {
+            Drink.AddSugar();
         }
 
-        public string CoffeeWithSugar()
+        public void SetExtraHot()
         {
-            var coffee = Drink.Coffee;
-
-            return coffee.MakeWithSugar(1);
+            Drink.SetExtraHot();
         }
 
-        public string CoffeeWithTwoSugar()
+        public void InsertMoney(double moneyAmount)
         {
-            var coffee = Drink.Coffee;
-
-            return coffee.MakeWithSugar(2);
+            cashRegister.InsertMoney(moneyAmount);
         }
 
-        public object Tea()
+        private double calculMissingMoneyAmount()
         {
-            var tea = Drink.Tea;
-
-            return tea.Make();
+            return cashRegister.CompareWithInsertedMoney(Drink.Price);
         }
 
-        public object TeaWithSugar()
+        private string showInsufficientMoneyMessage()
         {
-            var tea = Drink.Tea;
-
-            return tea.MakeWithSugar(1);
+            return string.Format("M:{0:0.00}", calculMissingMoneyAmount());
         }
 
-        public object TeaWithTwoSugar()
+        public string Make()
         {
-            var tea = Drink.Tea;
+            if (cashRegister.IsInsertedMoneyLessThan(Drink.Price))
+            {
+                return showInsufficientMoneyMessage();
+            }
 
-            return tea.MakeWithSugar(2);
-        }
-
-        public object Chocolate()
-        {
-            var chocolate = Drink.Chocolate;
-
-            return chocolate.Make();
-        }
-
-        public object ChocolateWithSugar()
-        {
-            var chocolate = Drink.Chocolate;
-
-            return chocolate.MakeWithSugar(1);
-        }
-
-        public object ChocolateWithTwoSugar()
-        {
-            var chocolate = Drink.Chocolate;
-
-            return chocolate.MakeWithSugar(2);
+            return Drink.BuildCommand();
         }
 
         public object ForwardMessage()
