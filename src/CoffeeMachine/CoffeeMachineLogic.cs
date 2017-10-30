@@ -15,6 +15,8 @@ namespace CoffeeMachine
 
         public string SendCommand()
         {
+            drinkMakerProtocol.BuildCommand();
+
             return "test";
         }
     }
