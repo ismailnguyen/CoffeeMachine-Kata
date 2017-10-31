@@ -11,8 +11,8 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Return_Empty_String()
         {
             // GIVEN
-            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
-            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var drinkOrder = Substitute.For<IDrinkOrder>();
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
 
             var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
 
@@ -27,8 +27,8 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Call_BuildCommand_Of_DrinkMakerProtocol()
         {
             // GIVEN
-            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
-            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var drinkOrder = Substitute.For<IDrinkOrder>();
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
 
             var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
 
@@ -45,9 +45,9 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Send_Command_From_DrinkMakerProtocol(string expectedCommand)
         {
             // GIVEN
-            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+            var drinkOrder = Substitute.For<IDrinkOrder>();
 
-            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
             drinkMakerProtocol.BuildMessage().Returns(expectedCommand);
 
             var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
@@ -57,6 +57,23 @@ namespace CoffeeMachineTests
 
             // THEN
             Check.That(command).IsEqualTo(expectedCommand);
+        }
+
+        [Test]
+        public void SendCommand_Should_Call_GetDrink_From_DrinkOrder()
+        {
+            // GIVEN
+            var drinkOrder = Substitute.For<IDrinkOrder>();
+
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+
+            // WHEN
+            var command = coffeeMachineLogic.SendCommand();
+
+            // THEN
+            drinkOrder.Received().GetDrink();
         }
     }
 }
