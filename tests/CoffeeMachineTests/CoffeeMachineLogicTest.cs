@@ -36,7 +36,27 @@ namespace CoffeeMachineTests
             coffeeMachineLogic.SendCommand();
 
             // THEN
-            drinkMakerProtocol.Received().BuildCommand();
+            drinkMakerProtocol.Received().BuildMessage();
+        }
+
+        [TestCase("foo")]
+        [TestCase("bar")]
+        [TestCase("baz")]
+        public void SendCommand_Should_Send_Command_From_DrinkMakerProtocol(string expectedCommand)
+        {
+            // GIVEN
+            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+
+            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            drinkMakerProtocol.BuildMessage().Returns(expectedCommand);
+
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+
+            // WHEN
+            var command = coffeeMachineLogic.SendCommand();
+
+            // THEN
+            Check.That(command).IsEqualTo(expectedCommand);
         }
     }
 }

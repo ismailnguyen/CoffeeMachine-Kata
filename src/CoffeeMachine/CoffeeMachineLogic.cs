@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class CoffeeMachineLogic
     {
@@ -15,9 +13,7 @@ namespace CoffeeMachine
 
         public string SendCommand()
         {
-            drinkMakerProtocol.BuildCommand();
-
-            return "test";
+            return drinkMakerProtocol.BuildMessage();
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IDrinkMakerProtocol
     {
-        string BuildCommand();
+        string BuildMessage();
     }
 }
