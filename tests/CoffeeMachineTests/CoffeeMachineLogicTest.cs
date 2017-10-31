@@ -8,7 +8,7 @@ namespace CoffeeMachineTests
     class CoffeeMachineLogicTest
     {
         [Test]
-        public void SendCommand_Should_Not_Return_Empty_String()
+        public void SendCommand_Should_Return_Empty_String()
         {
             // GIVEN
             IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
@@ -20,7 +20,7 @@ namespace CoffeeMachineTests
             string command = coffeeMachineLogic.SendCommand();
 
             // THEN
-            Check.That(command).IsNotNull().And.IsNotEmpty();
+            Check.That(command).IsEmpty();
         }
 
         [Test]
