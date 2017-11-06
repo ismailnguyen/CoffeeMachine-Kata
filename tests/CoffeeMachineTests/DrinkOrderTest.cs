@@ -28,8 +28,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             var drink = Substitute.For<IDrink>();
-            IDrinkOrder drinkOrder = new DrinkOrder(drink);
             drink.GetCode().Returns(expectedDrinkCode);
+
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
             // WHEN
             var drinkCode = drinkOrder.GetDrinkCode();
@@ -45,8 +46,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             var drink = Substitute.For<IDrink>();
-            IDrinkOrder drinkOrder = new DrinkOrder(drink);
             drink.GetSugarQuantity().Returns(expectedSugarQuantity);
+
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
             // WHEN
             int sugarQuantity = drinkOrder.GetSugarQuantity();

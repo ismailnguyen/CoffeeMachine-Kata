@@ -56,9 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoffeeMachineAcceptanceTest.cs" />
     <Compile Include="CoffeeMachineLogicTest.cs" />
     <Compile Include="DrinkMakerProtocolTest.cs" />
     <Compile Include="DrinkOrderTest.cs" />
+    <Compile Include="DrinkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

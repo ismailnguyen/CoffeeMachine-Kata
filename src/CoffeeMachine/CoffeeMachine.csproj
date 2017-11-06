@@ -40,13 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coffee.cs" />
     <Compile Include="CoffeeMachineLogic.cs" />
+    <Compile Include="Drink.cs" />
     <Compile Include="DrinkMakerProtocol.cs" />
     <Compile Include="DrinkOrder.cs" />
     <Compile Include="IDrink.cs" />
     <Compile Include="IDrinkMakerProtocol.cs" />
     <Compile Include="IDrinkOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tea.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

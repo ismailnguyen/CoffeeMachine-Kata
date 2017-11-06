@@ -13,6 +13,12 @@
 
         public string SendCommand()
         {
+            var drinkCode = drinkOrder.GetDrinkCode();
+            var sugarQuantity = drinkOrder.GetSugarQuantity();
+
+            drinkMakerProtocol.SetDrinkCode(drinkCode);
+            drinkMakerProtocol.SetSugarQuantity(sugarQuantity);
+
             return drinkMakerProtocol.BuildMessage();
         }
     }
