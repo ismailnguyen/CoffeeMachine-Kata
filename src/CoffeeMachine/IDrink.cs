@@ -4,6 +4,6 @@
     {
         string GetCode();
         int GetSugarQuantity();
-        void AddSugar();
+        IDrink AddSugar();
     }
 }

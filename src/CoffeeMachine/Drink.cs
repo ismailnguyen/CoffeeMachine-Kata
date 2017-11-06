@@ -10,14 +10,16 @@
             this.code = code;
         }
 
-        public void AddSugar()
+        public IDrink AddSugar()
         {
             if (sugarQuantity >= 2)
             {
-                return;
+                return this;
             }
 
             sugarQuantity++;
+
+            return this;
         }
 
         public string GetCode()

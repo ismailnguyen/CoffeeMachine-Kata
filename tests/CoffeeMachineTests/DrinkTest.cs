@@ -1,11 +1,6 @@
 ﻿using CoffeeMachine;
 using NFluent;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeMachineTests
 {
@@ -23,6 +18,21 @@ namespace CoffeeMachineTests
 
             // THEN
             int expectedSugarQuantity = 1;
+            Check.That(sugarQuantity).IsEqualTo(expectedSugarQuantity);
+        }
+
+        [Test]
+        public void AddSugar_Should_Add__Two_Sugar_To_Drink()
+        {
+            // GIVEN
+            IDrink drink = new Coffee();
+            drink.AddSugar().AddSugar();
+
+            // WHEN
+            int sugarQuantity = drink.GetSugarQuantity();
+
+            // THEN
+            int expectedSugarQuantity = 2;
             Check.That(sugarQuantity).IsEqualTo(expectedSugarQuantity);
         }
     }
