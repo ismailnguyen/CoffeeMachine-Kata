@@ -1,10 +1,24 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class DrinkMakerProtocol : IDrinkMakerProtocol
     {
+        private string drinkCode;
+
         public string BuildMessage()
         {
-            return string.Empty;
+            if (drinkCode == null)
+            {
+                return string.Empty;
+            }
+
+            return $"{drinkCode}::";
+        }
+
+        public void SetDrinkCode(string drinkCode)
+        {
+            this.drinkCode = drinkCode;
         }
     }
 }
