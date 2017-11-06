@@ -38,23 +38,5 @@ namespace CoffeeMachineTests
             // THEN
             drinkMakerProtocol.Received().BuildMessage();
         }
-
-        [Test]
-        public void SendCommand_Should_Call_GetDrink_From_DrinkOrder()
-        {
-            // GIVEN
-            var drinkOrder = Substitute.For<IDrinkOrder>();
-
-            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
-            // WHEN
-            var command = coffeeMachineLogic.SendCommand();
-
-            // THEN
-            var drink = Substitute.For<IDrink>();
-            drinkOrder.Received().GetDrink();
-        }
     }
 }

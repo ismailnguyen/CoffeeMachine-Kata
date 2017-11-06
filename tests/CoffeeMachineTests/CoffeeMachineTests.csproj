@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CoffeeMachineLogicTest.cs" />
     <Compile Include="DrinkMakerProtocolTest.cs" />
+    <Compile Include="DrinkOrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
