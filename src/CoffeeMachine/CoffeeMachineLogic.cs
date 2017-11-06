@@ -13,11 +13,8 @@
 
         public string SendCommand()
         {
-            if (drinkOrder.GetDrink() is Coffee)
-            {
-                return "C::";
-            }
-
+            drinkOrder.GetDrink();
+            
             return drinkMakerProtocol.BuildMessage();
         }
     }

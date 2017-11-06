@@ -39,26 +39,6 @@ namespace CoffeeMachineTests
             drinkMakerProtocol.Received().BuildMessage();
         }
 
-        [TestCase("foo")]
-        [TestCase("bar")]
-        [TestCase("baz")]
-        public void SendCommand_Should_Send_Command_From_DrinkMakerProtocol(string expectedCommand)
-        {
-            // GIVEN
-            var drinkOrder = Substitute.For<IDrinkOrder>();
-
-            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            drinkMakerProtocol.BuildMessage().Returns(expectedCommand);
-
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
-            // WHEN
-            var command = coffeeMachineLogic.SendCommand();
-
-            // THEN
-            Check.That(command).IsEqualTo(expectedCommand);
-        }
-
         [Test]
         public void SendCommand_Should_Call_GetDrink_From_DrinkOrder()
         {
@@ -75,26 +55,6 @@ namespace CoffeeMachineTests
             // THEN
             var drink = Substitute.For<IDrink>();
             drinkOrder.Received().GetDrink();
-        }
-
-        [Test]
-        public void SendCommand_Should_Send_Command_For_Coffee_When_Order_Contains_Coffee()
-        {
-            // GIVEN
-            IDrink drink = new Coffee();
-            var drinkOrder = Substitute.For<IDrinkOrder>();
-            drinkOrder.GetDrink().Returns(drink);
-
-            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
-            // WHEN
-            var command = coffeeMachineLogic.SendCommand();
-
-            // THEN
-            var expectedCommand = "C::";
-            Check.That(command).IsEqualTo(expectedCommand);
         }
     }
 }

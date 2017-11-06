@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Coffee.cs" />
     <Compile Include="CoffeeMachineLogic.cs" />
+    <Compile Include="DrinkMakerProtocol.cs" />
     <Compile Include="IDrink.cs" />
     <Compile Include="IDrinkMakerProtocol.cs" />
     <Compile Include="IDrinkOrder.cs" />
