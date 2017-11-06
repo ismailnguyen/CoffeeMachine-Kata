@@ -13,8 +13,6 @@
 
         public string SendCommand()
         {
-            drinkOrder.GetDrink();
-            
             return drinkMakerProtocol.BuildMessage();
         }
     }

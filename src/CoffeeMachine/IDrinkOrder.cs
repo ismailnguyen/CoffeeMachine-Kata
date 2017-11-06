@@ -2,6 +2,6 @@
 {
     public interface IDrinkOrder
     {
-        void GetDrinkCode();
+        string GetDrinkCode();
     }
 }

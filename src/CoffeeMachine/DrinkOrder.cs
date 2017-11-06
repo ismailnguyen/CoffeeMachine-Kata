@@ -9,8 +9,9 @@
             this.drink = drink;
         }
 
-        public void GetDrinkCode()
+        public string GetDrinkCode()
         {
+            return drink.GetCode();
         }
     }
 }
