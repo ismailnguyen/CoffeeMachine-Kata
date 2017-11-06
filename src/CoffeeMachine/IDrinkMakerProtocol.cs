@@ -4,5 +4,6 @@
     {
         string BuildMessage();
         void SetDrinkCode(string drinkCode);
+        void SetSugarQuantity(int v);
     }
 }
