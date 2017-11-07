@@ -28,7 +28,7 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrink drink = new Tea();
-            //drink.AddSugar();
+            drink.AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
@@ -40,6 +40,25 @@ namespace CoffeeMachineTests
 
             // THEN
             Check.That(command).IsEqualTo("T:1:1");
+        }
+
+        [Test]
+        public void Should_Send_Correct_Instructions_For_Chocolate_With_Two_Sugar_Order()
+        {
+            // GIVEN
+            IDrink drink = new Chocolate();
+            drink.AddSugar().AddSugar();
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
+
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+
+            // WHEN
+            string command = coffeeMachineLogic.SendCommand();
+
+            // THEN
+            Check.That(command).IsEqualTo("H:2:1");
         }
     }
 }
