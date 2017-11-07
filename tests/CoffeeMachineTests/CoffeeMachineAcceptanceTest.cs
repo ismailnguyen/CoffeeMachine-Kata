@@ -23,22 +23,23 @@ namespace CoffeeMachineTests
             Check.That(command).IsEqualTo("C::");
         }
 
-        //[Test]
-        //public void Should_Send_Correct_Instructions_For_Tea_Order()
-        //{
-        //    // GIVEN
-        //    IDrink drink = new Tea();
-        //    IDrinkOrder drinkOrder = new DrinkOrder(drink);
+        [Test]
+        public void Should_Send_Correct_Instructions_For_Tea_With_Sugar_Order()
+        {
+            // GIVEN
+            IDrink drink = new Tea();
+            //drink.AddSugar();
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
-        //    IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
 
-        //    CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
 
-        //    // WHEN
-        //    string command = coffeeMachineLogic.SendCommand();
+            // WHEN
+            string command = coffeeMachineLogic.SendCommand();
 
-        //    // THEN
-        //    Check.That(command).IsEqualTo("T:1:1");
-        //}
+            // THEN
+            Check.That(command).IsEqualTo("T:1:1");
+        }
     }
 }
