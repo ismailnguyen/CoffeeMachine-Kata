@@ -1,6 +1,5 @@
 ﻿using CoffeeMachine;
 using NFluent;
-using NSubstitute;
 using NUnit.Framework;
 namespace CoffeeMachineTests
 {
@@ -10,15 +9,14 @@ namespace CoffeeMachineTests
         public void SendMessage_Should_Send_Correct_Instructions_For_Coffee_Order()
         {
             // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
             IDrink drink = new Coffee();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
-            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
             // WHEN
-            string command = coffeeMachineLogic.SendCommand();
+            string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             Check.That(command).IsEqualTo("C::");
@@ -28,16 +26,15 @@ namespace CoffeeMachineTests
         public void SendMessage_Should_Send_Correct_Instructions_For_Tea_With_Sugar_Order()
         {
             // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
             IDrink drink = new Tea();
             drink.AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
-            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
             // WHEN
-            string command = coffeeMachineLogic.SendCommand();
+            string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             Check.That(command).IsEqualTo("T:1:1");
@@ -47,16 +44,15 @@ namespace CoffeeMachineTests
         public void SendMessage_Should_Send_Correct_Instructions_For_Chocolate_With_Two_Sugar_Order()
         {
             // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
             IDrink drink = new Chocolate();
             drink.AddSugar().AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
-            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
-
             // WHEN
-            string command = coffeeMachineLogic.SendCommand();
+            string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             Check.That(command).IsEqualTo("H:2:1");

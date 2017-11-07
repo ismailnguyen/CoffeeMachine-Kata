@@ -1,24 +1,15 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class CoffeeMachineLogic
     {
-        private readonly IDrinkOrder drinkOrder;
         private readonly IDrinkMakerProtocol drinkMakerProtocol;
-
-        public CoffeeMachineLogic(IDrinkOrder drinkOrder, IDrinkMakerProtocol drinkMakerProtocol)
-        {
-            this.drinkOrder = drinkOrder;
-            this.drinkMakerProtocol = drinkMakerProtocol;
-        }
 
         public CoffeeMachineLogic(IDrinkMakerProtocol drinkMakerProtocol)
         {
             this.drinkMakerProtocol = drinkMakerProtocol;
         }
 
-        public string SendCommand()
+        public string SendCommand(IDrinkOrder drinkOrder)
         {
             var drinkCode = drinkOrder.GetDrinkCode();
             var sugarQuantity = drinkOrder.GetSugarQuantity();

@@ -11,13 +11,13 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Return_Empty_String()
         {
             // GIVEN
-            var drinkOrder = Substitute.For<IDrinkOrder>();
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+            var drinkOrder = Substitute.For<IDrinkOrder>();
 
             // WHEN
-            string command = coffeeMachineLogic.SendCommand();
+            string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             Check.That(command).IsEmpty();
@@ -27,13 +27,13 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Call_BuildCommand_Of_DrinkMakerProtocol()
         {
             // GIVEN
-            var drinkOrder = Substitute.For<IDrinkOrder>();
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+            var drinkOrder = Substitute.For<IDrinkOrder>();
 
             // WHEN
-            coffeeMachineLogic.SendCommand();
+            coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             drinkMakerProtocol.Received().BuildCommand();
