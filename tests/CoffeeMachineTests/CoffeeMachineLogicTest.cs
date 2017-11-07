@@ -23,22 +23,46 @@ namespace CoffeeMachineTests
             Check.That(command).IsEmpty();
         }
 
-        [Test]
-        public void SendCommand_Should_Not_Call_BuildCommand_Of_DrinkMakerProtocol_With_Insufficient_Money_Inserted()
+        [TestCase(3, 1)]
+        [TestCase(1, 0)]
+        [TestCase(4, 3)]
+        public void SendCommand_Should_Not_Call_BuildCommand_Of_DrinkMakerProtocol_With_Insufficient_Money_Inserted(double orderPrice, double insertedMoney)
         {
             // GIVEN
+            var drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetPrice().Returns(orderPrice);
+
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
             var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            var drinkOrder = Substitute.For<IDrinkOrder>();
-
-            coffeeMachineLogic.InsertMoney(0);
+            coffeeMachineLogic.InsertMoney(insertedMoney);
 
             // WHEN
             coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
             drinkMakerProtocol.DidNotReceive().BuildCommand();
+        }
+
+        [TestCase(1, 3)]
+        [TestCase(7, 8)]
+        [TestCase(4, 4)]
+        public void SendCommand_Should_Call_BuildCommand_Of_DrinkMakerProtocol_With_Enough_Money_Inserted(double orderPrice, double insertedMoney)
+        {
+            // GIVEN
+            var drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetPrice().Returns(orderPrice);
+
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
+            coffeeMachineLogic.InsertMoney(insertedMoney);
+
+            // WHEN
+            coffeeMachineLogic.SendCommand(drinkOrder);
+
+            // THEN
+            drinkMakerProtocol.Received().BuildCommand();
         }
 
         [TestCase("message-content")]
