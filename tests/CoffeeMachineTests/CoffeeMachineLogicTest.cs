@@ -53,5 +53,21 @@ namespace CoffeeMachineTests
             // THEN
             drinkMakerProtocol.Received().BuildMessage(message);
         }
+
+        [TestCase("message-content", "M:message-content")]
+        public void ForwardMessage_Should_Return_Correct_Instruction_For_Message(string message, string expectedMessage)
+        {
+            // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            drinkMakerProtocol.BuildMessage(message).Returns(expectedMessage);
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
+            // WHEN
+            string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
+
+            // THEN
+            Check.That(forwardedMessage).IsEqualTo(expectedMessage);
+        }
     }
 }
