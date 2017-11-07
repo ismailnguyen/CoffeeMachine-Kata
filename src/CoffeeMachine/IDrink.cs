@@ -5,5 +5,6 @@
         string GetCode();
         int GetSugarQuantity();
         IDrink AddSugar();
+        double GetPrice();
     }
 }

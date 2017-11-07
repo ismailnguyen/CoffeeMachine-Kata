@@ -1,4 +1,6 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class DrinkOrder : IDrinkOrder
     {
@@ -12,6 +14,11 @@
         public string GetDrinkCode()
         {
             return drink.GetCode();
+        }
+
+        public double GetPrice()
+        {
+            return drink.GetPrice();
         }
 
         public int GetSugarQuantity()

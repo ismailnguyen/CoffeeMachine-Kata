@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoffeeMachineAcceptanceTest.cs" />
+    <Compile Include="CashRegisterTest.cs" />
     <Compile Include="CoffeeMachineLogicTest.cs" />
     <Compile Include="DrinkMakerProtocolTest.cs" />
     <Compile Include="DrinkOrderTest.cs" />

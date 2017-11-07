@@ -4,5 +4,6 @@
     {
         string GetDrinkCode();
         int GetSugarQuantity();
+        double GetPrice();
     }
 }

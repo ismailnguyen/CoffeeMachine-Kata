@@ -24,7 +24,7 @@ namespace CoffeeMachineTests
         }
 
         [Test]
-        public void SendCommand_Should_Call_BuildCommand_Of_DrinkMakerProtocol()
+        public void SendCommand_Should_Not_Call_BuildCommand_Of_DrinkMakerProtocol_With_Insufficient_Money_Inserted()
         {
             // GIVEN
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
@@ -32,11 +32,14 @@ namespace CoffeeMachineTests
 
             var drinkOrder = Substitute.For<IDrinkOrder>();
 
+            double price = drinkOrder.GetPrice();
+            coffeeMachineLogic.InsertMoney(price);
+
             // WHEN
             coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
-            drinkMakerProtocol.Received().BuildCommand();
+            drinkMakerProtocol.DidNotReceive().BuildCommand();
         }
 
         [TestCase("message-content")]

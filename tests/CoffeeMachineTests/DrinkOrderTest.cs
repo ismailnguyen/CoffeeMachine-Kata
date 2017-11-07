@@ -56,5 +56,23 @@ namespace CoffeeMachineTests
             // THEN
             Check.That(sugarQuantity).IsEqualTo(expectedSugarQuantity);
         }
+
+        [TestCase(0.2)]
+        [TestCase(1)]
+        [TestCase(34)]
+        public void GetPrice_Should_Return_Price_Of_Drink(double expectedPrice)
+        {
+            // GIVEN
+            IDrink drink = Substitute.For<IDrink>();
+            drink.GetPrice().Returns(expectedPrice);
+
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
+
+            // WHEN
+            double orderPrice = drinkOrder.GetPrice();
+
+            // THEN
+            Check.That(orderPrice).IsEqualTo(expectedPrice);
+        }
     }
 }

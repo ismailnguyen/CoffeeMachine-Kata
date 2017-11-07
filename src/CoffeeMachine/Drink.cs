@@ -4,6 +4,7 @@
     {
         private string code;
         private int sugarQuantity = 0;
+        private double price;
 
         protected Drink(string code)
         {
@@ -25,6 +26,11 @@
         public string GetCode()
         {
             return code;
+        }
+
+        public double GetPrice()
+        {
+            return price;
         }
 
         public int GetSugarQuantity()
