@@ -42,7 +42,7 @@ namespace CoffeeMachineTests
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        public void AddSugar_Should_Add_Sugar_To_Drink(int expectedSugarQuantity)
+        public void GetSugarQuantity_Return_Sugar_Quantity_Of_HotDrink(int expectedSugarQuantity)
         {
             // GIVEN
             var drink = Substitute.For<IHotDrink>();

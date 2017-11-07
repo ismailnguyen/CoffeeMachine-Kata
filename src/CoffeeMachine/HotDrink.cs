@@ -2,10 +2,8 @@
 {
     public abstract class HotDrink : Drink, IHotDrink
     {
-        private string code;
         private int sugarQuantity = 0;
-        private double price;
-        bool isExtraHot;
+        private bool isExtraHot;
 
         public HotDrink(string code, double price) : base(code, price)
         {

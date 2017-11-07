@@ -32,7 +32,7 @@ namespace CoffeeMachineTests
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
             CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            IDrink drink = new Tea();
+            IHotDrink drink = new Tea();
             drink.AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
@@ -53,7 +53,7 @@ namespace CoffeeMachineTests
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
             CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            IDrink drink = new Chocolate();
+            IHotDrink drink = new Chocolate();
             drink.AddSugar().AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
@@ -91,11 +91,11 @@ namespace CoffeeMachineTests
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
             CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            IDrink drink = new OrangeJuice();
+            IColdDrink drink = new OrangeJuice();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
             var price = drinkOrder.GetPrice();
-            coffeeMachineLogic.InsertMoney(price);
+            coffeeMachineLogic.InsertMoney(0.6);
 
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
