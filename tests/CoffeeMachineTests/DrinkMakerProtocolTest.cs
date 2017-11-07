@@ -13,7 +13,7 @@ namespace CoffeeMachineTests
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
 
             // WHEN
-            string message = drinkMakerProtocol.BuildMessage();
+            string message = drinkMakerProtocol.BuildCommand();
 
             // THEN
             Check.That(message).IsEmpty();
@@ -29,7 +29,7 @@ namespace CoffeeMachineTests
             drinkMakerProtocol.SetDrinkCode(drinkCode);
 
             // WHEN
-            string message = drinkMakerProtocol.BuildMessage();
+            string message = drinkMakerProtocol.BuildCommand();
 
             // THEN
             Check.That(message).IsEqualTo(expectedMessage);
@@ -46,7 +46,7 @@ namespace CoffeeMachineTests
             drinkMakerProtocol.SetSugarQuantity(sugarQuantity);
 
             // WHEN
-            string message = drinkMakerProtocol.BuildMessage();
+            string message = drinkMakerProtocol.BuildCommand();
 
             // THEN
             Check.That(message).IsEqualTo(expectedMessage);

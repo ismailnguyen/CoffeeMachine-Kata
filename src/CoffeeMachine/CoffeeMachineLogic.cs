@@ -1,4 +1,6 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class CoffeeMachineLogic
     {
@@ -11,6 +13,11 @@
             this.drinkMakerProtocol = drinkMakerProtocol;
         }
 
+        public CoffeeMachineLogic(IDrinkMakerProtocol drinkMakerProtocol)
+        {
+            this.drinkMakerProtocol = drinkMakerProtocol;
+        }
+
         public string SendCommand()
         {
             var drinkCode = drinkOrder.GetDrinkCode();
@@ -19,7 +26,12 @@
             drinkMakerProtocol.SetDrinkCode(drinkCode);
             drinkMakerProtocol.SetSugarQuantity(sugarQuantity);
 
-            return drinkMakerProtocol.BuildMessage();
+            return drinkMakerProtocol.BuildCommand();
+        }
+
+        public string ForwardMessage(string message)
+        {
+            return drinkMakerProtocol.BuildMessage(message);
         }
     }
 }

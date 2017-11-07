@@ -1,11 +1,13 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class DrinkMakerProtocol : IDrinkMakerProtocol
     {
         private string drinkCode;
         private int sugarQuantity;
 
-        public string BuildMessage()
+        public string BuildCommand()
         {
             if (drinkCode == null)
             {
@@ -18,6 +20,11 @@
             }
 
             return $"{drinkCode}:{sugarQuantity}:1";
+        }
+
+        public string BuildMessage(string message)
+        {
+            throw new NotImplementedException();
         }
 
         public void SetDrinkCode(string drinkCode)

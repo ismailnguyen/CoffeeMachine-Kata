@@ -1,12 +1,13 @@
 ﻿using CoffeeMachine;
 using NFluent;
+using NSubstitute;
 using NUnit.Framework;
 namespace CoffeeMachineTests
 {
     class CoffeeMachineAcceptanceTest
     {
         [Test]
-        public void Should_Send_Correct_Instructions_For_Coffee_Order()
+        public void SendMessage_Should_Send_Correct_Instructions_For_Coffee_Order()
         {
             // GIVEN
             IDrink drink = new Coffee();
@@ -24,7 +25,7 @@ namespace CoffeeMachineTests
         }
 
         [Test]
-        public void Should_Send_Correct_Instructions_For_Tea_With_Sugar_Order()
+        public void SendMessage_Should_Send_Correct_Instructions_For_Tea_With_Sugar_Order()
         {
             // GIVEN
             IDrink drink = new Tea();
@@ -43,7 +44,7 @@ namespace CoffeeMachineTests
         }
 
         [Test]
-        public void Should_Send_Correct_Instructions_For_Chocolate_With_Two_Sugar_Order()
+        public void SendMessage_Should_Send_Correct_Instructions_For_Chocolate_With_Two_Sugar_Order()
         {
             // GIVEN
             IDrink drink = new Chocolate();
@@ -59,6 +60,23 @@ namespace CoffeeMachineTests
 
             // THEN
             Check.That(command).IsEqualTo("H:2:1");
+        }
+
+        [TestCase("message-content", "M:message-content")]
+        public void ForwardMessage_Should_Forward_Any_Message_Received(string message, string expectedMessage)
+        {
+            //// GIVEN
+            //IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+            //IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            //drinkMakerProtocol.BuildMessage(message).Returns(expectedMessage);
+
+            //CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+
+            //// WHEN
+            //string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
+
+            //// THEN
+            //Check.That(forwardedMessage).IsEqualTo(expectedMessage);
         }
     }
 }

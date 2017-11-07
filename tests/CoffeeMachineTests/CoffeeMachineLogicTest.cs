@@ -36,7 +36,22 @@ namespace CoffeeMachineTests
             coffeeMachineLogic.SendCommand();
 
             // THEN
-            drinkMakerProtocol.Received().BuildMessage();
+            drinkMakerProtocol.Received().BuildCommand();
+        }
+
+        [TestCase("message-content")]
+        public void ForwardMessage_Should_Call_BuildMessage_Of_DrinkMakerProtocol(string message)
+        {
+            // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
+            // WHEN
+            string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
+
+            // THEN
+            drinkMakerProtocol.Received().BuildMessage(message);
         }
     }
 }
