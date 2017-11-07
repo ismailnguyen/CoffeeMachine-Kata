@@ -3,8 +3,6 @@
     public interface IDrink
     {
         string GetCode();
-        int GetSugarQuantity();
-        IDrink AddSugar();
         double GetPrice();
     }
 }

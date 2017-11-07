@@ -1,8 +1,8 @@
 ﻿namespace CoffeeMachine
 {
-    public class Coffee : Drink
+    public class Coffee : HotDrink
     {
-        public Coffee() : base("C")
+        public Coffee() : base("C", 0.60)
         {
         }
     }

@@ -45,7 +45,7 @@ namespace CoffeeMachineTests
         public void AddSugar_Should_Add_Sugar_To_Drink(int expectedSugarQuantity)
         {
             // GIVEN
-            var drink = Substitute.For<IDrink>();
+            var drink = Substitute.For<IHotDrink>();
             drink.GetSugarQuantity().Returns(expectedSugarQuantity);
 
             IDrinkOrder drinkOrder = new DrinkOrder(drink);

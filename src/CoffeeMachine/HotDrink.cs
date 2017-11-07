@@ -1,17 +1,21 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
-    public abstract class Drink : IDrink
+    public abstract class HotDrink : IHotDrink
     {
         private string code;
         private int sugarQuantity = 0;
         private double price;
+        bool isExtraHot;
 
-        protected Drink(string code)
+        protected HotDrink(string code, double price)
         {
             this.code = code;
+            this.price = price;
         }
 
-        public IDrink AddSugar()
+        public HotDrink AddSugar()
         {
             if (sugarQuantity >= 2)
             {
@@ -36,6 +40,16 @@
         public int GetSugarQuantity()
         {
             return sugarQuantity;
+        }
+
+        public bool IsExtraHot()
+        {
+            return isExtraHot;
+        }
+
+        public void SetExtraHot()
+        {
+            isExtraHot = true;
         }
     }
 }

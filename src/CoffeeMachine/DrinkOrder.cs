@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class DrinkOrder : IDrinkOrder
     {
@@ -23,7 +21,12 @@ namespace CoffeeMachine
 
         public int GetSugarQuantity()
         {
-            return drink.GetSugarQuantity();
+            if (drink is IHotDrink)
+            {
+                return ((IHotDrink)drink).GetSugarQuantity();
+            }
+
+            return 0;
         }
     }
 }

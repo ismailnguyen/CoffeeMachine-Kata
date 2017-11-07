@@ -15,6 +15,9 @@ namespace CoffeeMachineTests
             IDrink drink = new Coffee();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
+            var price = drinkOrder.GetPrice();
+            coffeeMachineLogic.InsertMoney(price);
+
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
@@ -33,6 +36,9 @@ namespace CoffeeMachineTests
             drink.AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
 
+            var price = drinkOrder.GetPrice();
+            coffeeMachineLogic.InsertMoney(price);
+
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
 
@@ -50,6 +56,9 @@ namespace CoffeeMachineTests
             IDrink drink = new Chocolate();
             drink.AddSugar().AddSugar();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
+
+            var price = drinkOrder.GetPrice();
+            coffeeMachineLogic.InsertMoney(price);
 
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
@@ -73,6 +82,26 @@ namespace CoffeeMachineTests
 
             // THEN
             Check.That(forwardedMessage).IsEqualTo(expectedMessage);
+        }
+
+        [Test]
+        public void SendMessage_Should_Send_Correct_Instructions_For_Orange_Juice_Order()
+        {
+            // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+
+            IDrink drink = new OrangeJuice();
+            IDrinkOrder drinkOrder = new DrinkOrder(drink);
+
+            var price = drinkOrder.GetPrice();
+            coffeeMachineLogic.InsertMoney(price);
+
+            // WHEN
+            string command = coffeeMachineLogic.SendCommand(drinkOrder);
+
+            // THEN
+            Check.That(command).IsEqualTo("O::");
         }
     }
 }

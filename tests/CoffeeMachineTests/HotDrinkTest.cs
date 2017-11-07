@@ -4,13 +4,13 @@ using NUnit.Framework;
 
 namespace CoffeeMachineTests
 {
-    class DrinkTest
+    class HotDrinkTest
     {
         [Test]
         public void AddSugar_Should_Add_Sugar_To_Drink()
         {
             // GIVEN
-            IDrink drink = new Coffee();
+            HotDrink drink = new Coffee();
             drink.AddSugar();
 
             // WHEN
@@ -25,7 +25,7 @@ namespace CoffeeMachineTests
         public void AddSugar_Should_Add_Two_Sugar_To_Drink()
         {
             // GIVEN
-            IDrink drink = new Coffee();
+            HotDrink drink = new Coffee();
             drink.AddSugar().AddSugar();
 
             // WHEN
@@ -40,7 +40,7 @@ namespace CoffeeMachineTests
         public void AddSugar_Should_Not_Add_More_Than_Two_Sugar_To_Drink()
         {
             // GIVEN
-            IDrink drink = new Coffee();
+            HotDrink drink = new Coffee();
             drink.AddSugar().AddSugar().AddSugar();
 
             // WHEN
@@ -49,6 +49,33 @@ namespace CoffeeMachineTests
             // THEN
             int expectedSugarQuantity = 2;
             Check.That(sugarQuantity).IsEqualTo(expectedSugarQuantity);
+        }
+
+        [Test]
+        public void IsExtraHot_Should_Return_False_When_Drink_Was_Not_Set_Extra_Hot()
+        {
+            // GIVEN
+            IHotDrink drink = new Coffee();
+
+            // WHEN
+            bool isExtraHot = drink.IsExtraHot();
+
+            // THEN
+            Check.That(isExtraHot).IsFalse();
+        }
+
+        [Test]
+        public void IsExtraHot_Should_Return_True_When_Drink_Was_Set_Extra_Hot()
+        {
+            // GIVEN
+            IHotDrink drink = new Coffee();
+            drink.SetExtraHot();
+
+            // WHEN
+            bool isExtraHot = drink.IsExtraHot();
+
+            // THEN
+            Check.That(isExtraHot).IsTrue();
         }
     }
 }
