@@ -63,20 +63,20 @@ namespace CoffeeMachineTests
         }
 
         [TestCase("message-content", "M:message-content")]
+        [TestCase("Foo", "M:Foo")]
+        [TestCase("Bar", "M:Bar")]
         public void ForwardMessage_Should_Forward_Any_Message_Received(string message, string expectedMessage)
         {
-            //// GIVEN
-            //IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
-            //IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            //drinkMakerProtocol.BuildMessage(message).Returns(expectedMessage);
+            // GIVEN
+            IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
 
-            //CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkOrder, drinkMakerProtocol);
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            //// WHEN
-            //string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
+            // WHEN
+            string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
 
-            //// THEN
-            //Check.That(forwardedMessage).IsEqualTo(expectedMessage);
+            // THEN
+            Check.That(forwardedMessage).IsEqualTo(expectedMessage);
         }
     }
 }

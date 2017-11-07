@@ -40,6 +40,8 @@ namespace CoffeeMachineTests
         }
 
         [TestCase("message-content")]
+        [TestCase("Foo")]
+        [TestCase("Bar")]
         public void ForwardMessage_Should_Call_BuildMessage_Of_DrinkMakerProtocol(string message)
         {
             // GIVEN
@@ -55,6 +57,8 @@ namespace CoffeeMachineTests
         }
 
         [TestCase("message-content", "M:message-content")]
+        [TestCase("Foo", "M:Foo")]
+        [TestCase("Bar", "M:Bar")]
         public void ForwardMessage_Should_Return_Correct_Instruction_For_Message(string message, string expectedMessage)
         {
             // GIVEN

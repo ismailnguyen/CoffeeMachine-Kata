@@ -24,7 +24,7 @@ namespace CoffeeMachine
 
         public string BuildMessage(string message)
         {
-            throw new NotImplementedException();
+            return $"M:{message}";
         }
 
         public void SetDrinkCode(string drinkCode)
