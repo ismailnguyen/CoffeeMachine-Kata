@@ -1,4 +1,6 @@
-﻿namespace CoffeeMachine
+﻿using System;
+
+namespace CoffeeMachine
 {
     public class CoffeeMachineLogic
     {
@@ -13,9 +15,11 @@
 
         public string SendCommand(IDrinkOrder drinkOrder)
         {
-            if (!isEnoughPrice(drinkOrder.GetPrice()))
+            var drinkPrice = drinkOrder.GetPrice();
+
+            if (!IsEnoughPrice(drinkPrice))
             {
-                return "";
+                return SendInsufficientMoneyMessage(drinkPrice);
             }
 
             var drinkCode = drinkOrder.GetDrinkCode();
@@ -27,14 +31,21 @@
             return drinkMakerProtocol.BuildCommand();
         }
 
+        private string SendInsufficientMoneyMessage(double drinkPrice)
+        {
+            double missingAmount = cashRegister.DifferenceWith(drinkPrice);
+
+            return $"M:{missingAmount}";
+        }
+
         public string ForwardMessage(string message)
         {
             return drinkMakerProtocol.BuildMessage(message);
         }
 
-        private bool isEnoughPrice(double drinkPrice)
+        private bool IsEnoughPrice(double drinkPrice)
         {
-            return cashRegister.HaveSufficientMoneyFor(drinkPrice);
+            return cashRegister.IsInsertedAmountLessThan(drinkPrice);
         }
 
         public void InsertMoney(double price)

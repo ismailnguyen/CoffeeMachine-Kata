@@ -15,7 +15,7 @@ namespace CoffeeMachineTests
             cashRegister.Add(insertedMoney);
 
             // WHEN
-            bool haveSufficientMoneyFor = cashRegister.HaveSufficientMoneyFor(minimumNeededMoney);
+            bool haveSufficientMoneyFor = cashRegister.IsInsertedAmountLessThan(minimumNeededMoney);
 
             // THEN
             Check.That(haveSufficientMoneyFor).IsTrue();
@@ -30,10 +30,26 @@ namespace CoffeeMachineTests
             cashRegister.Add(insertedMoney);
 
             // WHEN
-            bool haveSufficientMoneyFor = cashRegister.HaveSufficientMoneyFor(minimumNeededMoney);
+            bool haveSufficientMoneyFor = cashRegister.IsInsertedAmountLessThan(minimumNeededMoney);
 
             // THEN
             Check.That(haveSufficientMoneyFor).IsFalse();
+        }
+
+        [TestCase(5, 2, 3)]
+        [TestCase(30, 5, 25)]
+        [TestCase(1.20, 0.50, 0.70)]
+        public void AmountDifferenceWith_Should_Calcul_Difference_Between_Given_Amount_And_Inserted_Money(double amountToCheck, double insertedMoney, double expectedAmountDifference)
+        {
+            // GIVEN
+            CashRegister cashRegister = new CashRegister();
+            cashRegister.Add(insertedMoney);
+
+            // WHEN
+            double amountDifference = cashRegister.DifferenceWith(amountToCheck);
+
+            // THEN
+            Check.That(amountDifference).IsEqualTo(expectedAmountDifference);
         }
     }
 }
