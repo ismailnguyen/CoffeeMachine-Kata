@@ -22,11 +22,26 @@ namespace CoffeeMachineTests
         }
 
         [Test]
-        public void AddSugar_Should_Add__Two_Sugar_To_Drink()
+        public void AddSugar_Should_Add_Two_Sugar_To_Drink()
         {
             // GIVEN
             IDrink drink = new Coffee();
             drink.AddSugar().AddSugar();
+
+            // WHEN
+            int sugarQuantity = drink.GetSugarQuantity();
+
+            // THEN
+            int expectedSugarQuantity = 2;
+            Check.That(sugarQuantity).IsEqualTo(expectedSugarQuantity);
+        }
+
+        [Test]
+        public void AddSugar_Should_Not_Add_More_Than_Two_Sugar_To_Drink()
+        {
+            // GIVEN
+            IDrink drink = new Coffee();
+            drink.AddSugar().AddSugar().AddSugar();
 
             // WHEN
             int sugarQuantity = drink.GetSugarQuantity();
