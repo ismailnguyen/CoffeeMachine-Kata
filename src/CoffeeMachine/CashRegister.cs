@@ -2,16 +2,16 @@
 {
     public class CashRegister
     {
-        private double money = 0;
-
-        public double GetAvailableMoney()
-        {
-            return money;
-        }
+        private double insertedMoney = 0;
 
         public void Add(double money)
         {
-            this.money += money;
+            insertedMoney += money;
+        }
+
+        public bool HaveSufficientMoneyFor(double minimumNeededMoney)
+        {
+            return insertedMoney >= minimumNeededMoney;
         }
     }
 }

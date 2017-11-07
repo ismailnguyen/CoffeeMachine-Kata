@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
     public class CoffeeMachineLogic
     {
@@ -15,7 +13,7 @@ namespace CoffeeMachine
 
         public string SendCommand(IDrinkOrder drinkOrder)
         {
-            if (!isEnoughPrice())
+            if (!isEnoughPrice(drinkOrder.GetPrice()))
             {
                 return "";
             }
@@ -34,9 +32,9 @@ namespace CoffeeMachine
             return drinkMakerProtocol.BuildMessage(message);
         }
 
-        private bool isEnoughPrice()
+        private bool isEnoughPrice(double drinkPrice)
         {
-            return false;
+            return cashRegister.HaveSufficientMoneyFor(drinkPrice);
         }
 
         public void InsertMoney(double price)

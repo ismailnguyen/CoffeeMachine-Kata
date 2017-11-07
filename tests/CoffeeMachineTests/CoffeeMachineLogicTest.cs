@@ -32,8 +32,7 @@ namespace CoffeeMachineTests
 
             var drinkOrder = Substitute.For<IDrinkOrder>();
 
-            double price = drinkOrder.GetPrice();
-            coffeeMachineLogic.InsertMoney(price);
+            coffeeMachineLogic.InsertMoney(0);
 
             // WHEN
             coffeeMachineLogic.SendCommand(drinkOrder);
