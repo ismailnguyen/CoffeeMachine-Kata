@@ -35,7 +35,7 @@ namespace CoffeeMachine
         {
             double missingAmount = cashRegister.DifferenceWith(drinkPrice);
 
-            return $"M:{missingAmount}";
+            return string.Format("M:{0:0.00}", missingAmount);
         }
 
         public string ForwardMessage(string message)

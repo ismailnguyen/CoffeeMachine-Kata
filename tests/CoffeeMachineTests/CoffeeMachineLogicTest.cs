@@ -44,7 +44,7 @@ namespace CoffeeMachineTests
             drinkMakerProtocol.DidNotReceive().BuildCommand();
         }
 
-        [TestCase(3, 1, "M:4")]
+        [TestCase(3, 1, "M:2.00")]
         [TestCase(0.20, 0, "M:0.20")]
         [TestCase(4.5, 3, "M:1.50")]
         public void SendCommand_Should_Return_Missing_Money_Amount_With_Insufficient_Money_Inserted(double orderPrice, double insertedMoney, string expectedMessage)
