@@ -1,18 +1,14 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
-    public abstract class HotDrink : IHotDrink
+    public abstract class HotDrink : Drink, IHotDrink
     {
         private string code;
         private int sugarQuantity = 0;
         private double price;
         bool isExtraHot;
 
-        protected HotDrink(string code, double price)
+        public HotDrink(string code, double price) : base(code, price)
         {
-            this.code = code;
-            this.price = price;
         }
 
         public HotDrink AddSugar()
@@ -25,16 +21,6 @@ namespace CoffeeMachine
             sugarQuantity++;
 
             return this;
-        }
-
-        public string GetCode()
-        {
-            return code;
-        }
-
-        public double GetPrice()
-        {
-            return price;
         }
 
         public int GetSugarQuantity()

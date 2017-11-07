@@ -44,6 +44,7 @@
     <Compile Include="Chocolate.cs" />
     <Compile Include="Coffee.cs" />
     <Compile Include="CoffeeMachineLogic.cs" />
+    <Compile Include="Drink.cs" />
     <Compile Include="HotDrink.cs" />
     <Compile Include="DrinkMakerProtocol.cs" />
     <Compile Include="DrinkOrder.cs" />
