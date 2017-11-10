@@ -40,14 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChocolateMaker.cs" />
-    <Compile Include="Drink.cs" />
-    <Compile Include="DrinkMaker.cs" />
     <Compile Include="CashRegister.cs" />
-    <Compile Include="OrangeJuiceMaker.cs" />
+    <Compile Include="Chocolate.cs" />
+    <Compile Include="Coffee.cs" />
+    <Compile Include="CoffeeMachineLogic.cs" />
+    <Compile Include="ColdDrink.cs" />
+    <Compile Include="Drink.cs" />
+    <Compile Include="HotDrink.cs" />
+    <Compile Include="DrinkMakerProtocol.cs" />
+    <Compile Include="DrinkOrder.cs" />
+    <Compile Include="ICashRegister.cs" />
+    <Compile Include="IColdDrink.cs" />
+    <Compile Include="IDrink.cs" />
+    <Compile Include="IDrinkMakerProtocol.cs" />
+    <Compile Include="IDrinkOrder.cs" />
+    <Compile Include="IHotDrink.cs" />
+    <Compile Include="OrangeJuice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CoffeeMaker.cs" />
-    <Compile Include="TeaMaker.cs" />
+    <Compile Include="Tea.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

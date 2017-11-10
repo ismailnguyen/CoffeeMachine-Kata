@@ -1,55 +1,24 @@
-﻿using System.Text;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
-    public class Drink
+    public abstract class Drink : IDrink
     {
-        private string drinkCode;
-        private bool isExtraHot;
+        private string code;
+        private double price;
 
-        private int sugars;
-        public double Price { get; private set; }
-
-        public Drink(string drinkCode, double price)
+        protected Drink(string code, double price)
         {
-            this.drinkCode = drinkCode;
-            Price = price;
+            this.code = code;
+            this.price = price;
         }
 
-        public void AddSugar()
+        public string GetCode()
         {
-            if (sugars == 2)
-            {
-                return;
-            }
-
-            sugars++;
+            return code;
         }
 
-        public void SetExtraHot()
+        public double GetPrice()
         {
-            isExtraHot = true;
-        }
-
-        public string BuildCommand()
-        {
-            var command = new StringBuilder(drinkCode);
-
-            if (isExtraHot)
-            {
-                command.Append("h");
-            }
-
-            if (sugars > 0)
-            {
-                command.AppendFormat(":{0}:1", sugars);
-            }
-            else
-            {
-                command.Append("::");
-            }
-
-            return command.ToString();
+            return price;
         }
     }
 }

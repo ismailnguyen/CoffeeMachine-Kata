@@ -1,22 +1,22 @@
 ﻿namespace CoffeeMachine
 {
-    public class CashRegister
+    public class CashRegister : ICashRegister
     {
-        private double insertedMoneyAmount;
+        private double insertedMoneyAmount = 0;
 
-        public void InsertMoney(double moneyAmount)
+        public void Add(double money)
         {
-            insertedMoneyAmount += moneyAmount;
+            insertedMoneyAmount += money;
         }
 
-        public double CompareWithInsertedMoney(double amount)
+        public bool IsInsertedAmountLessThan(double minimumNeededMoney)
         {
-            return amount - insertedMoneyAmount;
+            return insertedMoneyAmount >= minimumNeededMoney;
         }
 
-        public bool IsInsertedMoneyLessThan(double amount)
+        public double DifferenceWith(double amountToCheck)
         {
-            return insertedMoneyAmount < amount;
+            return amountToCheck - insertedMoneyAmount;
         }
     }
 }
