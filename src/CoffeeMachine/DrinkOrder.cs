@@ -21,9 +21,10 @@
 
         public int GetSugarQuantity()
         {
-            if (drink is IHotDrink)
+            var hotDrink = drink as IHotDrink;
+            if (hotDrink != null)
             {
-                return ((IHotDrink)drink).GetSugarQuantity();
+                return hotDrink.GetSugarQuantity();
             }
 
             return 0;

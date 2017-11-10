@@ -3,12 +3,12 @@
     public class CoffeeMachineLogic
     {
         private readonly IDrinkMakerProtocol drinkMakerProtocol;
-        private readonly CashRegister cashRegister;
+        private readonly ICashRegister cashRegister;
 
-        public CoffeeMachineLogic(IDrinkMakerProtocol drinkMakerProtocol)
+        public CoffeeMachineLogic(IDrinkMakerProtocol drinkMakerProtocol, ICashRegister cashRegister)
         {
             this.drinkMakerProtocol = drinkMakerProtocol;
-            cashRegister = new CashRegister();
+            this.cashRegister = cashRegister;
         }
 
         public string SendCommand(IDrinkOrder drinkOrder)
@@ -20,13 +20,7 @@
                 return SendInsufficientMoneyMessage(drinkPrice);
             }
 
-            var drinkCode = drinkOrder.GetDrinkCode();
-            var sugarQuantity = drinkOrder.GetSugarQuantity();
-
-            drinkMakerProtocol.SetDrinkCode(drinkCode);
-            drinkMakerProtocol.SetSugarQuantity(sugarQuantity);
-
-            return drinkMakerProtocol.BuildCommand();
+            return drinkMakerProtocol.BuildCommand(drinkOrder);
         }
 
         private string SendInsufficientMoneyMessage(double drinkPrice)

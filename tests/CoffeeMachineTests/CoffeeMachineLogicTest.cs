@@ -11,10 +11,14 @@ namespace CoffeeMachineTests
         public void SendCommand_Should_Return_Empty_String()
         {
             // GIVEN
-            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
-
             var drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetPrice().Returns(0);
+
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var cashRegister = Substitute.For<ICashRegister>();
+            cashRegister.IsInsertedAmountLessThan(0).Returns(true);
+
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
@@ -33,7 +37,8 @@ namespace CoffeeMachineTests
             drinkOrder.GetPrice().Returns(orderPrice);
 
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            var cashRegister = Substitute.For<ICashRegister>();
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             coffeeMachineLogic.InsertMoney(insertedMoney);
 
@@ -41,7 +46,7 @@ namespace CoffeeMachineTests
             coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
-            drinkMakerProtocol.DidNotReceive().BuildCommand();
+            drinkMakerProtocol.DidNotReceive().BuildCommand(drinkOrder);
         }
 
         [TestCase(3, 1, "M:2.00")]
@@ -54,9 +59,12 @@ namespace CoffeeMachineTests
             drinkOrder.GetPrice().Returns(orderPrice);
 
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            coffeeMachineLogic.InsertMoney(insertedMoney);
+            var cashRegister = Substitute.For<ICashRegister>();
+            cashRegister.IsInsertedAmountLessThan(orderPrice).Returns(false);
+            cashRegister.DifferenceWith(orderPrice).Returns(orderPrice - insertedMoney);
+
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
             string command = coffeeMachineLogic.SendCommand(drinkOrder);
@@ -75,15 +83,17 @@ namespace CoffeeMachineTests
             drinkOrder.GetPrice().Returns(orderPrice);
 
             var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
-            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
 
-            coffeeMachineLogic.InsertMoney(insertedMoney);
+            var cashRegister = Substitute.For<ICashRegister>();
+            cashRegister.IsInsertedAmountLessThan(orderPrice).Returns(true);
+
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
             coffeeMachineLogic.SendCommand(drinkOrder);
 
             // THEN
-            drinkMakerProtocol.Received().BuildCommand();
+            drinkMakerProtocol.Received().BuildCommand(drinkOrder);
         }
 
         [TestCase("message-content")]
@@ -92,11 +102,14 @@ namespace CoffeeMachineTests
         public void ForwardMessage_Should_Call_BuildMessage_Of_DrinkMakerProtocol(string message)
         {
             // GIVEN
-            IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
+            var cashRegister = Substitute.For<ICashRegister>();
 
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
+
+            //TODO: Forward message should be on DrinkMaker
             string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
 
             // THEN
@@ -112,7 +125,8 @@ namespace CoffeeMachineTests
             IDrinkMakerProtocol drinkMakerProtocol = Substitute.For<IDrinkMakerProtocol>();
             drinkMakerProtocol.BuildMessage(message).Returns(expectedMessage);
 
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            var cashRegister = Substitute.For<ICashRegister>();
+            var coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
             string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);

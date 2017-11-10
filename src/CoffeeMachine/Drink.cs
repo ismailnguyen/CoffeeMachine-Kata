@@ -1,6 +1,6 @@
 ﻿namespace CoffeeMachine
 {
-    public abstract class Drink
+    public abstract class Drink : IDrink
     {
         private string code;
         private double price;

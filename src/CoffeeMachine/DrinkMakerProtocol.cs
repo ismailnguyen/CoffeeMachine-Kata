@@ -4,12 +4,12 @@ namespace CoffeeMachine
 {
     public class DrinkMakerProtocol : IDrinkMakerProtocol
     {
-        private string drinkCode;
-        private int sugarQuantity;
-
-        public string BuildCommand()
+        public string BuildCommand(IDrinkOrder drinkOrder)
         {
-            if (drinkCode == null)
+            var drinkCode = drinkOrder.GetDrinkCode();
+            var sugarQuantity = drinkOrder.GetSugarQuantity();
+
+            if (string.IsNullOrEmpty(drinkCode))
             {
                 return string.Empty;
             }
@@ -25,16 +25,6 @@ namespace CoffeeMachine
         public string BuildMessage(string message)
         {
             return $"M:{message}";
-        }
-
-        public void SetDrinkCode(string drinkCode)
-        {
-            this.drinkCode = drinkCode;
-        }
-
-        public void SetSugarQuantity(int sugarQuantity)
-        {
-            this.sugarQuantity = sugarQuantity;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CoffeeMachine;
 using NFluent;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace CoffeeMachineTests
@@ -10,10 +11,13 @@ namespace CoffeeMachineTests
         public void BuildMessage_Should_Build_Empty_Message()
         {
             // GIVEN
+            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetDrinkCode().Returns(string.Empty);
+
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
 
             // WHEN
-            string message = drinkMakerProtocol.BuildCommand();
+            string message = drinkMakerProtocol.BuildCommand(drinkOrder);
 
             // THEN
             Check.That(message).IsEmpty();
@@ -25,11 +29,13 @@ namespace CoffeeMachineTests
         public void BuildMessage_Should_Build_Message_For_Drink(string drinkCode, string expectedMessage)
         {
             // GIVEN
+            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetDrinkCode().Returns(drinkCode);
+
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            drinkMakerProtocol.SetDrinkCode(drinkCode);
 
             // WHEN
-            string message = drinkMakerProtocol.BuildCommand();
+            string message = drinkMakerProtocol.BuildCommand(drinkOrder);
 
             // THEN
             Check.That(message).IsEqualTo(expectedMessage);
@@ -41,12 +47,14 @@ namespace CoffeeMachineTests
         public void BuildMessage_Should_Build_Message_For_Drink_With_Sugar_Quantity(string drinkCode, int sugarQuantity, string expectedMessage)
         {
             // GIVEN
+            IDrinkOrder drinkOrder = Substitute.For<IDrinkOrder>();
+            drinkOrder.GetDrinkCode().Returns(drinkCode);
+            drinkOrder.GetSugarQuantity().Returns(sugarQuantity);
+
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            drinkMakerProtocol.SetDrinkCode(drinkCode);
-            drinkMakerProtocol.SetSugarQuantity(sugarQuantity);
 
             // WHEN
-            string message = drinkMakerProtocol.BuildCommand();
+            string message = drinkMakerProtocol.BuildCommand(drinkOrder);
 
             // THEN
             Check.That(message).IsEqualTo(expectedMessage);

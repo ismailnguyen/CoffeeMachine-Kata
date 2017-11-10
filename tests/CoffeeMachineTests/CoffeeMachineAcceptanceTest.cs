@@ -10,7 +10,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            ICashRegister cashRegister = new CashRegister();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             IDrink drink = new Coffee();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);
@@ -30,7 +32,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            ICashRegister cashRegister = new CashRegister();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             IHotDrink drink = new Tea();
             drink.AddSugar();
@@ -51,7 +55,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            ICashRegister cashRegister = new CashRegister();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             IHotDrink drink = new Chocolate();
             drink.AddSugar().AddSugar();
@@ -74,8 +80,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
+            ICashRegister cashRegister = new CashRegister();
 
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             // WHEN
             string forwardedMessage = coffeeMachineLogic.ForwardMessage(message);
@@ -89,7 +96,9 @@ namespace CoffeeMachineTests
         {
             // GIVEN
             IDrinkMakerProtocol drinkMakerProtocol = new DrinkMakerProtocol();
-            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol);
+            ICashRegister cashRegister = new CashRegister();
+
+            CoffeeMachineLogic coffeeMachineLogic = new CoffeeMachineLogic(drinkMakerProtocol, cashRegister);
 
             IColdDrink drink = new OrangeJuice();
             IDrinkOrder drinkOrder = new DrinkOrder(drink);

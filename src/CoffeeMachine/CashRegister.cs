@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace CoffeeMachine
+﻿namespace CoffeeMachine
 {
-    public class CashRegister
+    public class CashRegister : ICashRegister
     {
         private double insertedMoneyAmount = 0;
 
